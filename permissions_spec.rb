@@ -80,14 +80,14 @@ class Account
 
     user_role = ''
 
-    # user_membership = membership_for(user)
-    # permission = @list.map do |membership|
-    #   if user_membership.can_edit?(membership)
-    #     [membership, 'X']
-    #    else
-    #     [membership, 'X']
-    #    end
-    # end
+     user_membership = membership_for(user)
+     permission = @list.map do |membership|
+       if user_membership.can_edit?(membership)
+         [membership, 'X']
+        else
+         [membership, 'X']
+        end
+     end
 
           #   if user_role == 'admin'
     #
@@ -193,7 +193,10 @@ RSpec.describe User do
       user1 = User.new(1)
       user2 = User.new(2)
       user3 = User.new(3)
-      account = Account.new([[user1, 'admin'], [user2, 'member'], [user3, 'member']])
+      #account = Account.new([[user1, 'admin'], [user2, 'member'], [user3, 'member']])
+      m1 = Membership.new(user1, account, 'admin');
+      m2...
+      memarray = [m1, m2]
 
       expect(user2.get_edit_list(account)).to eq([[user1, 'admin', ''], [user2, 'member', 'X'], [user3, 'member', '']])
     end
